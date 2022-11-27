@@ -1,7 +1,8 @@
 <?php
+//Dashboard Aside
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Asidebar extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,9 +19,17 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	public function index()
+	public function index($page = 'dashboard/home')
 	{
-		//
-		$this->load->view('home');
+		if (!file_exists(APPPATH. 'views/dashboard/includes'. $page. '.php')exi) {
+			show_404();
+		}
+		// load page templates
+		$this->load->view('welcome_message');
+		$this->load->view('dashboard/includes/header');
+		//$this->load->view('dashboard/includes/navbar');
+		$this->load->view('dashboard/includes/asidebar', $page_data);
+		$this->load->view('dashboard/department', $data);
+		$this->load->view('dashboard/includes/footer');
 	}
 }
